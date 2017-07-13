@@ -1,4 +1,5 @@
 require "spec_helper"
+require "example"
 
 RSpec.describe Application do
   context "index" do
@@ -12,6 +13,14 @@ RSpec.describe Application do
       get "/"
 
       expect(last_response.body).to include("Vanilla Ruby Sinatra Application")
+    end
+
+    it "contains the example message" do
+      example = Example.new
+
+      get "/"
+
+      expect(last_response.body).to include(example.message)
     end
   end
 end
